@@ -21,7 +21,7 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
 Gem::Specification.new do |s|
   s.name          = 'gbud'
-  s.version       = '0.0.5'
+  s.version       = '0.1.0'
   s.platform      = Gem::Platform::RUBY
   s.authors       = ['Richard Davis']
   s.email         = 'rvdavis@member.fsf.org'
