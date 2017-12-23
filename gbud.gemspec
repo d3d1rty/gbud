@@ -1,11 +1,7 @@
 # -*- encoding: utf-8 -*-'
-##
-# = Gemfile
-# Author::    Richard Davis
-# Copyright:: Copyright 2017 Richard Davis
-# License::   GNU Public License 3
+# Copyright 2017 Richard Davis
 #
-# The gemspec contains the metadata used in building the gem.
+# This file is part of gbud.
 #
 # gbud is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -25,7 +21,7 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
 Gem::Specification.new do |s|
   s.name          = 'gbud'
-  s.version       = '0.0.4'
+  s.version       = '0.0.5'
   s.platform      = Gem::Platform::RUBY
   s.authors       = ['Richard Davis']
   s.email         = 'rvdavis@member.fsf.org'

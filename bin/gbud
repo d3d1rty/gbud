@@ -1,5 +1,5 @@
 #!/usr/bin/env ruby
-# Copyright 2016 Richard Davis
+# Copyright 2017 Richard Davis
 #
 # This file is part of gbud.
 #
@@ -16,6 +16,13 @@
 # You should have received a copy of the GNU General Public License
 # along with gbud.  If not, see <http://www.gnu.org/licenses/>.
 
+##
+# = bin/gbud
+# Author::    Richard Davis
+# Copyright:: Copyright 2017 Richard Davis
+# License::   GNU Public License 3
+#
+# Project executable file.
 begin
   require 'gbud'
 rescue LoadError

@@ -1,10 +1,6 @@
-##
-# = GBud
-# Author::    Richard Davis
-# Copyright:: Copyright 2017 Richard Davis
-# License::   GNU Public License 3
+# Copyright 2017 Richard Davis
 #
-# Module for namespacing application classes.
+# This file is part of gbud.
 #
 # gbud is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -18,5 +14,13 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with gbud.  If not, see <http://www.gnu.org/licenses/>.
+
+##
+# = GBud
+# Author::    Richard Davis
+# Copyright:: Copyright 2017 Richard Davis
+# License::   GNU Public License 3
+#
+# Module for namespacing application classes.
 module GBud
 end

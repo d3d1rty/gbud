@@ -1,10 +1,6 @@
-##
-# = Guardfile
-# Author::    Richard Davis
-# Copyright:: Copyright 2017 Richard Davis
-# License::   GNU Public License 3
+# Copyright 2017 Richard Davis
 #
-# The Guardfile tells the guard programs which files/directories to watch.
+# This file is part of gbud.
 #
 # gbud is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -22,8 +18,8 @@
 directories(%w[lib test])\
   .select { |d| Dir.exist?(d) ? d : UI.warning("Directory #{d} does not exist") }
 
-guard :minitest, spring: true do
-  # with Minitest::Unit
+guard :minitest do
   watch(%r{^test/(.*)\/?test_(.*)\.rb$})
-  watch(%r{^lib/(.+)\.rb$})                               { |m| "test/lib/#{m[1]}_test.rb" }
+  watch(%r{^lib/(.*/)?([^/]+)\.rb$})     { |m| "test/#{m[1]}test_#{m[2]}.rb" }
+  watch(%r{^test/test_helper\.rb$})      { 'test' }
 end

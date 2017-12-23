@@ -1,10 +1,6 @@
-##
-# = Rakefile
-# Author::    Richard Davis
-# Copyright:: Copyright 2017 Richard Davis
-# License::   GNU Public License 3
+# Copyright 2017 Richard Davis
 #
-# The Rakefile contains tasks to be executed using the rake utility.
+# This file is part of gbud.
 #
 # gbud is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by

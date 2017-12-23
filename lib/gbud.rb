@@ -1,10 +1,6 @@
-##
-# = gbud.rb
-# Author::    Richard Davis
-# Copyright:: Copyright 2017 Richard Davis
-# License::   GNU Public License 3
+# Copyright 2017 Richard Davis
 #
-# The main script for handling user input and program execution.
+# This file is part of gbud.
 #
 # gbud is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -19,6 +15,13 @@
 # You should have received a copy of the GNU General Public License
 # along with gbud.  If not, see <http://www.gnu.org/licenses/>.
 
+##
+# = gbud.rb
+# Author::    Richard Davis
+# Copyright:: Copyright 2017 Richard Davis
+# License::   GNU Public License 3
+#
+# The main script for handling user input and program execution.
 require 'fileutils'
 require 'optparse'
 require 'erb'
@@ -43,6 +46,10 @@ optparse = OptionParser.new do |opts|
 
   opts.on('--cli', 'Creates an executable with option parsing') do
     options[:cli] = true
+  end
+
+  opts.on('--no-cli', 'Creates an executable without option parsing') do
+    options[:cli] = false
   end
 
   opts.on('-l', '--license', 'Displays the copyright notice') do
@@ -89,7 +96,8 @@ if options[:name]
   end
   metadata.summary = GBud::UserPrompt.get_value 'Enter a short summary of the project => '
   metadata.description = GBud::UserPrompt.get_value 'Enter a description of the project => '
-  project = GBud::ProjectBuilder.new metadata.to_hash, false
+  options[:cli] = true if options[:cli].nil?
+  project = GBud::ProjectBuilder.new metadata.to_hash, options[:cli]
   project.build
 end
 

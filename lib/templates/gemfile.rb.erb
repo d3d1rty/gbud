@@ -1,4 +1,4 @@
-# Copyright <%= Date.today.year %> <%= metadata[:authors].join(', ') %>
+# Copyright <%= Date.today.year %> <%= @metadata[:authors].join(', ') %>
 #
 # This file is part of <%= @metadata[:name] %>.
 #
@@ -16,9 +16,18 @@
 # along with <%= @metadata[:name] %>.  If not, see <http://www.gnu.org/licenses/>.
 
 source 'https://rubygems.org'
-ruby '2.3.1'
+ruby '2.4.1'
 
-gem 'pry', '~> 0.10.4'
-gem 'rake', '~> 12.0'
-gem 'minitest', '~> 5.0'
-gem 'rubocop', '~> 0.46.0'
+group :development do
+  # Minitest for unit tests
+  gem 'minitest', '~> 5.0'
+  # Use Guard to run automated tests
+  gem 'guard', '~> 2.14', '>= 2.14.1'
+  gem 'guard-minitest', '~> 2.4', '>= 2.4.6'
+  # Rake executes tasks defined in the Rakefile
+  gem 'rake', '~> 12.0'
+  # Rubocop for code style guidelines
+  gem 'rubocop', '~> 0.48.1'
+  # RDoc for generating documentation
+  gem 'rdoc', '~> 5.1'
+end

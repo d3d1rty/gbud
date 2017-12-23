@@ -1,14 +1,3 @@
-require 'minitest/autorun'
-require_relative '../lib/gbud/project_metadata'
-
-##
-# = ProjectMetadataTest
-# Author::    Richard Davis
-# Copyright:: Copyright 2017 Richard Davis
-# License::   GNU Public License 3
-#
-# Tests for GBud::ProjectMetadata class functionality.
-#
 # gbud is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation, either version 3 of the License, or
@@ -21,6 +10,17 @@ require_relative '../lib/gbud/project_metadata'
 #
 # You should have received a copy of the GNU General Public License
 # along with gbud.  If not, see <http://www.gnu.org/licenses/>.
+
+require 'minitest/autorun'
+require_relative '../lib/gbud/project_metadata'
+
+##
+# = ProjectMetadataTest
+# Author::    Richard Davis
+# Copyright:: Copyright 2017 Richard Davis
+# License::   GNU Public License 3
+#
+# Tests for GBud::ProjectMetadata class functionality.
 class ProjectMetadataTest < Minitest::Test
   ##
   # Initializes test with sample data

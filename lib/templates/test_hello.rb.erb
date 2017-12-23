@@ -1,4 +1,4 @@
-# Copyright <%= Date.today.year %> <%= metadata[:authors].join(', ') %>
+# Copyright <%= Date.today.year %> <%= @metadata[:authors].join(', ') %>
 #
 # This file is part of <%= @metadata[:name] %>.
 #
@@ -16,10 +16,25 @@
 # along with <%= @metadata[:name] %>.  If not, see <http://www.gnu.org/licenses/>.
 
 require 'minitest/autorun'
-require '<%= @metadata[:name] %>'
+require_relative '../lib/<%= @metadata[:name] %>/hello'
 
+##
+# = HelloTest
+# Author::    <%= @metadata[:authors].join(', ') %>
+# Copyright:: Copyright <%= Date.today.year %> <%= @metadata[:authors].join(', ') %>
+# License::   GNU Public License 3
+#
+# Contains modularized code for project; given example provides a greeting
 class HelloTest < Minitest::Test
+  ##
+  # Initializes test with sample data
+  def setup
+    @name = 'friend'
+  end
+
+  ##
+  # Ensures the greeter is behaving as expected
   def test_hello
-    assert_equal('Hello, friend.', <%= @metadata[:name].split('-').each{ |s| s.capitalize! }.join %>::Hello.greeting)
+    assert_equal('Hello, friend.', <%= @metadata[:name].split(/-|_/).each{ |s| s.capitalize! }.join %>::Hello.greeting(@name))
   end
 end

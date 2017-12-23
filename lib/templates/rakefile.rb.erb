@@ -1,4 +1,4 @@
-# Copyright <%= Date.today.year %> <%= metadata[:authors].join(', ') %>
+# Copyright <%= Date.today.year %> <%= @metadata[:authors].join(', ') %>
 #
 # This file is part of <%= @metadata[:name] %>.
 #
@@ -16,7 +16,19 @@
 # along with <%= @metadata[:name] %>.  If not, see <http://www.gnu.org/licenses/>.
 
 require 'rake/testtask'
+require 'rdoc/task'
 
 Rake::TestTask.new do |t|
     t.libs << 'test'
+end
+
+RDoc::Task.new :rdoc do |rdoc|
+  rdoc.main = 'README.md'
+  rdoc.rdoc_files.include('README.md',
+                          './lib/*.rb',
+                          './lib/**/*.rb',
+                          './test/**/*.rb')
+  rdoc.title = '<%= @metadata[:name] %> Documentation'
+  rdoc.rdoc_dir = 'docs/'
+  rdoc.options << '--all'
 end
