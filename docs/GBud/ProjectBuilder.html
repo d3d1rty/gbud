@@ -75,15 +75,19 @@
     
     <li ><a href="#method-i-build">#build</a>
     
+    <li ><a href="#method-i-copy_assets">#copy_assets</a>
+    
     <li ><a href="#method-i-make_directories">#make_directories</a>
     
     <li ><a href="#method-i-make_executable">#make_executable</a>
     
-    <li ><a href="#method-i-make_files">#make_files</a>
+    <li ><a href="#method-i-map_asset">#map_asset</a>
     
     <li ><a href="#method-i-map_template">#map_template</a>
     
     <li ><a href="#method-i-render">#render</a>
+    
+    <li ><a href="#method-i-render_templates">#render_templates</a>
     
   </ul>
 </div>
@@ -132,6 +136,19 @@ and basic files using templates.</p>
       </header>
 
       
+      <div id="attribute-i-assets" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">assets</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>Hash containing file names for project assets</p>
+        
+        </div>
+      </div>
+      
       <div id="attribute-i-cli" class="method-detail">
         <div class="method-heading attribute-method-heading">
           <span class="method-name">cli</span><span
@@ -141,19 +158,6 @@ and basic files using templates.</p>
         <div class="method-description">
         
         <p>Option for making project executable</p>
-        
-        </div>
-      </div>
-      
-      <div id="attribute-i-files" class="method-detail">
-        <div class="method-heading attribute-method-heading">
-          <span class="method-name">files</span><span
-            class="attribute-access-type">[R]</span>
-        </div>
-
-        <div class="method-description">
-        
-        <p>Hash containing file names for project files</p>
         
         </div>
       </div>
@@ -180,6 +184,19 @@ and basic files using templates.</p>
         <div class="method-description">
         
         <p>Hash specifying project directories</p>
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-templates" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">templates</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>Hash containing file names for project templates</p>
         
         </div>
       </div>
@@ -213,28 +230,33 @@ and basic files using templates.</p>
 
           
           <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File lib/gbud/project_builder.rb, line 22</span>
+            <pre><span class="ruby-comment"># File lib/gbud/project_builder.rb, line 43</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span> <span class="ruby-identifier">metadata</span>, <span class="ruby-identifier">cli</span>
   <span class="ruby-ivar">@metadata</span> = <span class="ruby-identifier">metadata</span>
 
   <span class="ruby-ivar">@cli</span> = <span class="ruby-identifier">cli</span>
-  <span class="ruby-ivar">@files</span> = {
-    <span class="ruby-identifier">readme</span><span class="ruby-operator">:</span> <span class="ruby-string">&#39;README.md&#39;</span>,
-    <span class="ruby-identifier">gemspec</span><span class="ruby-operator">:</span> <span class="ruby-node">&quot;#{metadata[:name]}.gemspec&quot;</span>,
-    <span class="ruby-identifier">gemfile</span><span class="ruby-operator">:</span> <span class="ruby-string">&#39;Gemfile&#39;</span>,
-    <span class="ruby-identifier">rakefile</span><span class="ruby-operator">:</span> <span class="ruby-string">&#39;Rakefile&#39;</span>,
-    <span class="ruby-identifier">main</span><span class="ruby-operator">:</span> <span class="ruby-node">&quot;#{metadata[:name]}.rb&quot;</span>,
-    <span class="ruby-identifier">hello</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;hello.rb&quot;</span>,
-    <span class="ruby-identifier">test_hello</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;test_hello.rb&quot;</span>
+  <span class="ruby-ivar">@templates</span> = {
+    <span class="ruby-string">&#39;readme.md&#39;</span><span class="ruby-operator">:</span> <span class="ruby-string">&#39;README.md&#39;</span>,
+    <span class="ruby-string">&#39;gemspec.rb&#39;</span><span class="ruby-operator">:</span> <span class="ruby-node">&quot;#{metadata[:name]}.gemspec&quot;</span>,
+    <span class="ruby-string">&#39;gemfile.rb&#39;</span><span class="ruby-operator">:</span> <span class="ruby-string">&#39;Gemfile&#39;</span>,
+    <span class="ruby-string">&#39;guardfile.rb&#39;</span><span class="ruby-operator">:</span> <span class="ruby-string">&#39;Guardfile&#39;</span>,
+    <span class="ruby-string">&#39;rakefile.rb&#39;</span><span class="ruby-operator">:</span> <span class="ruby-string">&#39;Rakefile&#39;</span>,
+    <span class="ruby-string">&#39;main.rb&#39;</span><span class="ruby-operator">:</span> <span class="ruby-node">&quot;#{metadata[:name]}.rb&quot;</span>,
+    <span class="ruby-string">&#39;hello.rb&#39;</span><span class="ruby-operator">:</span> <span class="ruby-string">&#39;hello.rb&#39;</span>,
+    <span class="ruby-string">&#39;test_hello.rb&#39;</span><span class="ruby-operator">:</span> <span class="ruby-string">&#39;test_hello.rb&#39;</span>,
+    <span class="ruby-string">&#39;namespace.rb&#39;</span><span class="ruby-operator">:</span> <span class="ruby-string">&#39;namespace.rb&#39;</span>
+  }
+  <span class="ruby-ivar">@assets</span> = {
+    <span class="ruby-identifier">license</span><span class="ruby-operator">:</span> <span class="ruby-string">&#39;LICENSE&#39;</span>
   }
   <span class="ruby-ivar">@paths</span> = {
     <span class="ruby-identifier">project_dir</span><span class="ruby-operator">:</span> <span class="ruby-node">&quot;#{metadata[:name]}/&quot;</span>,
     <span class="ruby-identifier">project_lib_dir</span><span class="ruby-operator">:</span> <span class="ruby-node">&quot;#{metadata[:name]}/lib/&quot;</span>,
     <span class="ruby-identifier">project_lib_project_dir</span><span class="ruby-operator">:</span> <span class="ruby-node">&quot;#{metadata[:name]}/lib/#{metadata[:name]}/&quot;</span>,
-    <span class="ruby-identifier">project_test_dir</span><span class="ruby-operator">:</span> <span class="ruby-node">&quot;#{metadata[:name]}/test/&quot;</span>
+    <span class="ruby-identifier">project_test_dir</span><span class="ruby-operator">:</span> <span class="ruby-node">&quot;#{metadata[:name]}/test/&quot;</span>,
   }
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">cli</span> <span class="ruby-operator">==</span> <span class="ruby-keyword">true</span>
-    <span class="ruby-ivar">@files</span>[<span class="ruby-value">:executable</span>] = <span class="ruby-node">&quot;#{metadata[:name]}&quot;</span>
+    <span class="ruby-ivar">@templates</span>[<span class="ruby-value">:&#39;executable.rb&#39;</span>] = <span class="ruby-node">&quot;#{metadata[:name]}&quot;</span>
     <span class="ruby-ivar">@paths</span>[<span class="ruby-value">:project_bin_dir</span>] = <span class="ruby-node">&quot;#{metadata[:name]}/bin/&quot;</span>
   <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
@@ -275,11 +297,11 @@ and basic files using templates.</p>
 
           
           <div class="method-source-code" id="build-source">
-            <pre><span class="ruby-comment"># File lib/gbud/project_builder.rb, line 49</span>
+            <pre><span class="ruby-comment"># File lib/gbud/project_builder.rb, line 75</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">build</span>
   <span class="ruby-identifier">make_directories</span>
-  <span class="ruby-identifier">make_files</span>
-  <span class="ruby-identifier">make_executable</span> <span class="ruby-value">:executable</span> <span class="ruby-keyword">if</span> <span class="ruby-ivar">@cli</span> <span class="ruby-operator">==</span> <span class="ruby-keyword">true</span>
+  <span class="ruby-identifier">render_templates</span>
+  <span class="ruby-identifier">copy_assets</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -297,6 +319,46 @@ and basic files using templates.</p>
        <header>
          <h3>Private Instance Methods</h3>
        </header>
+
+    
+      <div id="method-i-copy_assets" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">copy_assets</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Copies the assets</p>
+          
+          
+
+          
+          <div class="method-source-code" id="copy_assets-source">
+            <pre><span class="ruby-comment"># File lib/gbud/project_builder.rb, line 146</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">copy_assets</span>
+  <span class="ruby-ivar">@assets</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">asset</span>, <span class="ruby-identifier">filename</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">directory</span> = <span class="ruby-identifier">map_asset</span> <span class="ruby-identifier">asset</span>
+    <span class="ruby-constant">FileUtils</span>.<span class="ruby-identifier">cp</span>(<span class="ruby-constant">File</span>.<span class="ruby-identifier">expand_path</span>(<span class="ruby-constant">File</span>.<span class="ruby-identifier">join</span>(<span class="ruby-constant">File</span>.<span class="ruby-identifier">dirname</span>(<span class="ruby-keyword">__FILE__</span>),
+                                    <span class="ruby-string">&#39;..&#39;</span>,
+                                    <span class="ruby-string">&#39;assets&#39;</span>,
+                                    <span class="ruby-node">&quot;#{filename}&quot;</span>)),
+                                  <span class="ruby-node">&quot;#{directory}#{filename}&quot;</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
 
     
       <div id="method-i-make_directories" class="method-detail ">
@@ -318,7 +380,7 @@ and basic files using templates.</p>
 
           
           <div class="method-source-code" id="make_directories-source">
-            <pre><span class="ruby-comment"># File lib/gbud/project_builder.rb, line 59</span>
+            <pre><span class="ruby-comment"># File lib/gbud/project_builder.rb, line 85</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">make_directories</span>
   <span class="ruby-ivar">@paths</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">path</span>, <span class="ruby-identifier">dir</span><span class="ruby-operator">|</span>
     <span class="ruby-constant">FileUtils</span>.<span class="ruby-identifier">mkdir_p</span>(<span class="ruby-identifier">dir</span>)
@@ -353,9 +415,9 @@ and basic files using templates.</p>
 
           
           <div class="method-source-code" id="make_executable-source">
-            <pre><span class="ruby-comment"># File lib/gbud/project_builder.rb, line 112</span>
+            <pre><span class="ruby-comment"># File lib/gbud/project_builder.rb, line 140</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">make_executable</span>
-  <span class="ruby-constant">File</span>.<span class="ruby-identifier">chmod</span>(<span class="ruby-value">0755</span>, <span class="ruby-node">&quot;#{@paths[:project_bin_dir]}#{@files[:executable]}&quot;</span>)
+  <span class="ruby-constant">File</span>.<span class="ruby-identifier">chmod</span>(<span class="ruby-value">0755</span>, <span class="ruby-node">&quot;#{@paths[:project_bin_dir]}#{@templates[:&#39;executable.rb&#39;]}&quot;</span>)
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -367,11 +429,11 @@ and basic files using templates.</p>
       </div>
 
     
-      <div id="method-i-make_files" class="method-detail ">
+      <div id="method-i-map_asset" class="method-detail ">
         
         <div class="method-heading">
-          <span class="method-name">make_files</span><span
-            class="method-args">()</span>
+          <span class="method-name">map_asset</span><span
+            class="method-args">(asset)</span>
           
           <span class="method-click-advice">click to toggle source</span>
           
@@ -380,20 +442,19 @@ and basic files using templates.</p>
 
         <div class="method-description">
           
-          <p>Makes the files using templates</p>
+          <p>Maps each asset file to correct directory</p>
           
           
 
           
-          <div class="method-source-code" id="make_files-source">
-            <pre><span class="ruby-comment"># File lib/gbud/project_builder.rb, line 67</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">make_files</span>
-  <span class="ruby-ivar">@files</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">template</span>, <span class="ruby-identifier">filename</span><span class="ruby-operator">|</span>
-    <span class="ruby-identifier">directory</span> = <span class="ruby-identifier">map_template</span> <span class="ruby-identifier">template</span>
-    <span class="ruby-identifier">file</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">new</span> <span class="ruby-node">&quot;#{directory}#{filename}&quot;</span>, <span class="ruby-string">&#39;w+&#39;</span>
-    <span class="ruby-identifier">file</span>.<span class="ruby-identifier">puts</span>(<span class="ruby-identifier">render</span> <span class="ruby-identifier">template</span>)
-    <span class="ruby-identifier">file</span>.<span class="ruby-identifier">close</span>
-    <span class="ruby-identifier">make_executable</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">template</span> <span class="ruby-operator">==</span> <span class="ruby-value">:executable</span>
+          <div class="method-source-code" id="map_asset-source">
+            <pre><span class="ruby-comment"># File lib/gbud/project_builder.rb, line 159</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">map_asset</span> <span class="ruby-identifier">asset</span>
+  <span class="ruby-keyword">case</span> <span class="ruby-identifier">asset</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-value">:gitignore</span>
+      <span class="ruby-ivar">@paths</span>[<span class="ruby-value">:project_dir</span>]
+    <span class="ruby-keyword">when</span> <span class="ruby-value">:license</span>
+      <span class="ruby-ivar">@paths</span>[<span class="ruby-value">:project_dir</span>]
   <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
@@ -425,24 +486,26 @@ and basic files using templates.</p>
 
           
           <div class="method-source-code" id="map_template-source">
-            <pre><span class="ruby-comment"># File lib/gbud/project_builder.rb, line 79</span>
+            <pre><span class="ruby-comment"># File lib/gbud/project_builder.rb, line 105</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">map_template</span> <span class="ruby-identifier">template</span>
   <span class="ruby-keyword">case</span> <span class="ruby-identifier">template</span>
-    <span class="ruby-keyword">when</span> <span class="ruby-value">:readme</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-value">:&#39;readme.md&#39;</span>
       <span class="ruby-ivar">@paths</span>[<span class="ruby-value">:project_dir</span>]
-    <span class="ruby-keyword">when</span> <span class="ruby-value">:gemspec</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-value">:&#39;gemspec.rb&#39;</span>
       <span class="ruby-ivar">@paths</span>[<span class="ruby-value">:project_dir</span>]
-    <span class="ruby-keyword">when</span> <span class="ruby-value">:gemfile</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-value">:&#39;gemfile.rb&#39;</span>
       <span class="ruby-ivar">@paths</span>[<span class="ruby-value">:project_dir</span>]
-    <span class="ruby-keyword">when</span> <span class="ruby-value">:rakefile</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-value">:&#39;guardfile.rb&#39;</span>
       <span class="ruby-ivar">@paths</span>[<span class="ruby-value">:project_dir</span>]
-    <span class="ruby-keyword">when</span> <span class="ruby-value">:main</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-value">:&#39;rakefile.rb&#39;</span>
+      <span class="ruby-ivar">@paths</span>[<span class="ruby-value">:project_dir</span>]
+    <span class="ruby-keyword">when</span> <span class="ruby-value">:&#39;main.rb&#39;</span>
       <span class="ruby-ivar">@paths</span>[<span class="ruby-value">:project_lib_dir</span>]
-    <span class="ruby-keyword">when</span> <span class="ruby-value">:hello</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-value">:&#39;hello.rb&#39;</span>
       <span class="ruby-ivar">@paths</span>[<span class="ruby-value">:project_lib_project_dir</span>]
-    <span class="ruby-keyword">when</span> <span class="ruby-value">:executable</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-value">:&#39;executable.rb&#39;</span>
       <span class="ruby-ivar">@paths</span>[<span class="ruby-value">:project_bin_dir</span>]
-    <span class="ruby-keyword">when</span> <span class="ruby-value">:test_hello</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-value">:&#39;test_hello.rb&#39;</span>
       <span class="ruby-ivar">@paths</span>[<span class="ruby-value">:project_test_dir</span>]
   <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
@@ -475,13 +538,52 @@ and basic files using templates.</p>
 
           
           <div class="method-source-code" id="render-source">
-            <pre><span class="ruby-comment"># File lib/gbud/project_builder.rb, line 102</span>
+            <pre><span class="ruby-comment"># File lib/gbud/project_builder.rb, line 130</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">render</span> <span class="ruby-identifier">template</span>
   <span class="ruby-identifier">path</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">expand_path</span>(<span class="ruby-constant">File</span>.<span class="ruby-identifier">join</span>(<span class="ruby-constant">File</span>.<span class="ruby-identifier">dirname</span>(<span class="ruby-keyword">__FILE__</span>),
                                     <span class="ruby-string">&#39;..&#39;</span>,
                                     <span class="ruby-string">&#39;templates&#39;</span>,
-                                    <span class="ruby-node">&quot;#{template}.rb.erb&quot;</span>))
+                                    <span class="ruby-node">&quot;#{template}.erb&quot;</span>))
   <span class="ruby-constant">ERB</span>.<span class="ruby-identifier">new</span>(<span class="ruby-constant">File</span>.<span class="ruby-identifier">read</span>(<span class="ruby-identifier">path</span>)).<span class="ruby-identifier">result</span>(<span class="ruby-identifier">binding</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-render_templates" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">render_templates</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Makes the files using templates</p>
+          
+          
+
+          
+          <div class="method-source-code" id="render_templates-source">
+            <pre><span class="ruby-comment"># File lib/gbud/project_builder.rb, line 93</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">render_templates</span>
+  <span class="ruby-ivar">@templates</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">template</span>, <span class="ruby-identifier">filename</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">directory</span> = <span class="ruby-identifier">map_template</span> <span class="ruby-identifier">template</span>
+    <span class="ruby-identifier">file</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">new</span> <span class="ruby-node">&quot;#{directory}#{filename}&quot;</span>, <span class="ruby-string">&#39;w+&#39;</span>
+    <span class="ruby-identifier">file</span>.<span class="ruby-identifier">puts</span>(<span class="ruby-identifier">render</span> <span class="ruby-identifier">template</span>)
+    <span class="ruby-identifier">file</span>.<span class="ruby-identifier">close</span>
+    <span class="ruby-identifier">make_executable</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">template</span> <span class="ruby-operator">==</span> <span class="ruby-value">:&#39;executable.rb&#39;</span>
+  <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -501,7 +603,7 @@ and basic files using templates.</p>
 
 <footer id="validator-badges" role="contentinfo">
   <p><a href="http://validator.w3.org/check/referer">Validate</a>
-  <p>Generated by <a href="https://rdoc.github.io/rdoc">RDoc</a> 5.1.0.
+  <p>Generated by <a href="https://rdoc.github.io/rdoc">RDoc</a> 5.0.0.
   <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
 </footer>
 

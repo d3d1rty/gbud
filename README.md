@@ -1,8 +1,6 @@
 # gbud
 [![Gem Version](https://badge.fury.io/rb/gbud.svg)](https://badge.fury.io/rb/gbud)
 
-[Documentation](https://d3d1rty.github.io/gbud/)
-
 ## Table of Contents
 * About
 * Why use gbud?
@@ -19,6 +17,8 @@
 
 ## About
 This project aims to simplify the initialization of a Ruby project by setting up the appropriate directories and files needed. By default, projects created by `gbud` are GPL-3.0 compliant, although support for the LGPL-3.0 is on the way; `gbud` will never support instantiating non-free projects.
+
+Documentation can be found [here](https://d3d1rty.github.io/gbud/).
 
 ## Why Use gbud?
 `gbud` rapidly scaffolds a new gem for you, allowing you to skip the tedious part of building out a gem manually. It automatically protects the freedom of your code by including the GPL with your project, providing command-line options for users to get copyright and warranty information for your project, as well as inserting boilerplate GPL copyright notices on each of the source files for the project. Future efforts will allow selection of the LGPL as an alternative to the GPL.
@@ -54,6 +54,7 @@ Based off your input, gbud will generate
   * an executable (if CLI is specified)
   * main script
   * library file
+  * namespace file
   * test script
   * gemspec
   * Gemfile
@@ -132,10 +133,19 @@ rake rdoc
 
 ### Testing
 Integration tests should be written for all classes and methods. The test suite
-can be run manually or automatically with the command `bundle exec rake test`.
+can be run manually `bundle exec rake test` or automatically using guard `bundle exec guard`.
 
 ## TODO
-* Decouple template and project builder logic
-* Write tests for `FileTemplate` (to be implemented) and `ProjectBuilder` classes
-* Implement `--cli` and `--no-cli` options
 * Implement `--lgpl` option for generating LGPL protected code
+* Increase test coverage.
+
+## Changelog
+###2017-12-23
+* Upgraded to version `0.1.0`.
+* Upgraded Ruby version to `2.4.1`.
+* Implemented `--cli` and `--no-cli` options.
+* Decoupled asset and template logic.
+* Added `Guardfile`
+* Fixed `rake rdoc` task.
+* Enforced commenting consistency across templates and files.
+* Corrected dependencies in `Gemfile`.
