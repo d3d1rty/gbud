@@ -1,4 +1,6 @@
-# -*- encoding: utf-8 -*-
+# frozen_string_literal: true
+
+#
 # Copyright <%= Date.today.year %> <%= @metadata[:authors].join(', ') %>
 #
 # This file is part of <%= @metadata[:name] %>.
@@ -16,25 +18,25 @@
 # You should have received a copy of the GNU General Public License
 # along with <%= @metadata[:name] %>.  If not, see <http://www.gnu.org/licenses/>.
 
-lib = File.expand_path('../lib', __FILE__)
+lib = File.expand_path('../lib', __dir__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
 Gem::Specification.new do |s|
   s.name          = '<%= @metadata[:name] %>'
   s.version       = '<%= @metadata[:version] %>'
   s.platform      = Gem::Platform::RUBY
-  s.authors       = <%= @metadata[:authors] %>
+  s.authors       = <%= @metadata[:authors].to_s.gsub('"','') %>
   s.email         = '<%= @metadata[:email] %>'
   s.homepage      = '<%= @metadata[:url] %>'
   s.summary       = '<%= @metadata[:summary] %>'
-  s.description   = <<-EOF
+  s.description   = <<~HEREDOC
   <%= @metadata[:description] %>
-EOF
+HEREDOC
   s.license       = '<%= @metadata[:license] %>'
   s.files         = Dir['lib/**/*']
-  <% if @cli == true %>
-    s.executables   = ['<%= @metadata[:name] %>']
-  <% end %>
+<%- if @cli == true -%>
+  s.executables   = ['<%= @metadata[:name] %>']
+<%- end -%>
   s.test_files    = Dir['test/**/*']
   s.require_path  = ['lib']
 end

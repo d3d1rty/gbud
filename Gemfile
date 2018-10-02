@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Copyright 2017 Richard Davis
 #
 # This file is part of gbud.
@@ -16,18 +18,20 @@
 # along with gbud.  If not, see <http://www.gnu.org/licenses/>.
 
 source 'https://rubygems.org'
-ruby '2.4.1'
+ruby '2.5.1'
+
+group :development, :test do
+  # Minitest for unit tests
+  gem 'minitest', '~> 5.11', '>= 5.11.3'
+  # Rake executes tasks defined in the Rakefile
+  gem 'rake', '~> 12.3', '>= 12.3.1'
+end
 
 group :development do
-  # Minitest for unit tests
-  gem 'minitest', '~> 5.0'
-  # Use Guard to run automated tests
-  gem 'guard', '~> 2.14', '>= 2.14.1'
-  gem 'guard-minitest', '~> 2.4', '>= 2.4.6'
-  # Rake executes tasks defined in the Rakefile
-  gem 'rake', '~> 12.0'
+  # Pry for debugging/REPL
+  gem 'pry', '~> 0.11.3'
   # Rubocop for code style guidelines
-  gem 'rubocop', '~> 0.48.1'
+  gem 'rubocop', '~> 0.59.2'
   # RDoc for generating documentation
   gem 'rdoc', '~> 5.1'
 end

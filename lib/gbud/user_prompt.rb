@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Copyright 2017 Richard Davis
 #
 # This file is part of gbud.

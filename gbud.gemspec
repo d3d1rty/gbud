@@ -1,4 +1,5 @@
-# -*- encoding: utf-8 -*-'
+# frozen_string_literal: true
+
 # Copyright 2017 Richard Davis
 #
 # This file is part of gbud.
@@ -16,21 +17,21 @@
 # You should have received a copy of the GNU General Public License
 # along with gbud.  If not, see <http://www.gnu.org/licenses/>.
 
-lib = File.expand_path('../lib', __FILE__)
+lib = File.expand_path('../lib', __dir__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
 Gem::Specification.new do |s|
   s.name          = 'gbud'
-  s.version       = '0.1.0'
+  s.version       = '0.2.0'
   s.platform      = Gem::Platform::RUBY
   s.authors       = ['Richard Davis']
   s.email         = 'rvdavis@member.fsf.org'
   s.homepage      = 'http://www.github.com/d3d1rty/gbud'
   s.summary       = 'Initializes the basic structure of a gem'
-  s.description   = <<-EOF
+  s.description   = <<~HEREDOC
     This project aims to make starting a new gem project simple by automating
     the creation of all required files and directories for you.
-  EOF
+  HEREDOC
   s.license       = 'GPL-3.0'
   s.files         = Dir['lib/**/*']
   s.executables   = ['gbud']

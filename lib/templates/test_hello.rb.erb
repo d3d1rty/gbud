@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Copyright <%= Date.today.year %> <%= @metadata[:authors].join(', ') %>
 #
 # This file is part of <%= @metadata[:name] %>.
@@ -24,7 +26,7 @@ require_relative '../lib/<%= @metadata[:name] %>/hello'
 # Copyright:: Copyright <%= Date.today.year %> <%= @metadata[:authors].join(', ') %>
 # License::   GNU Public License 3
 #
-# Contains modularized code for project; given example provides a greeting
+# Contains tests for Hello class.
 class HelloTest < Minitest::Test
   ##
   # Initializes test with sample data

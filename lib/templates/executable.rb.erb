@@ -1,4 +1,5 @@
 #!/usr/bin/env ruby'
+
 # Copyright <%= Date.today.year %> <%= @metadata[:authors].join(', ') %>
 #
 # This file is part of <%= @metadata[:name] %>.
@@ -24,8 +25,8 @@
 #
 # Project executable file.
 begin
-  require '<%= @metadata[:name] %>'
+  require '<%= @metadata[:name].to_s.tr('-', '_') %>'
 rescue LoadError
   require 'rubygems'
-  require '<%= @metadata[:name] %>'
+  require '<%= @metadata[:name].to_s.tr('-', '_') %>'
 end

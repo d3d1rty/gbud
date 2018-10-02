@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Copyright <%= Date.today.year %> <%= @metadata[:authors].join(', ') %>
 #
 # This file is part of <%= @metadata[:name] %>.
@@ -19,7 +21,7 @@ require 'rake/testtask'
 require 'rdoc/task'
 
 Rake::TestTask.new do |t|
-    t.libs << 'test'
+  t.libs << 'test'
 end
 
 RDoc::Task.new :rdoc do |rdoc|

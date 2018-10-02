@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Copyright 2017 Richard Davis
 #
 # This file is part of gbud.
@@ -40,20 +42,18 @@ module GBud
 
     ##
     # Instantiates a ProjectBuilder object
-    def initialize metadata, cli
+    def initialize(metadata, cli)
       @metadata = metadata
-
       @cli = cli
       @templates = {
         'readme.md': 'README.md',
         'gemspec.rb': "#{metadata[:name]}.gemspec",
         'gemfile.rb': 'Gemfile',
-        'guardfile.rb': 'Guardfile',
         'rakefile.rb': 'Rakefile',
-        'main.rb': "#{metadata[:name]}.rb",
+        'base.rb': 'base.rb',
         'hello.rb': 'hello.rb',
         'test_hello.rb': 'test_hello.rb',
-        'namespace.rb': 'namespace.rb'
+        'namespace.rb': "#{metadata[:name].to_s.tr('-', '_')}.rb"
       }
       @assets = {
         license: 'LICENSE'
@@ -62,12 +62,11 @@ module GBud
         project_dir: "#{metadata[:name]}/",
         project_lib_dir: "#{metadata[:name]}/lib/",
         project_lib_project_dir: "#{metadata[:name]}/lib/#{metadata[:name]}/",
-        project_test_dir: "#{metadata[:name]}/test/",
+        project_test_dir: "#{metadata[:name]}/test/"
       }
-      if cli == true
-        @templates[:'executable.rb'] = "#{metadata[:name]}"
-        @paths[:project_bin_dir] = "#{metadata[:name]}/bin/"
-      end
+      exit unless cli == true
+      @templates[:'executable.rb'] = metadata[:name].to_s
+      @paths[:project_bin_dir] = "#{metadata[:name]}/bin/"
     end
 
     ##
@@ -83,7 +82,7 @@ module GBud
     ##
     # Creates the project directories
     def make_directories
-      @paths.each do |path, dir|
+      @paths.each do |_path, dir|
         FileUtils.mkdir_p(dir)
       end
     end
@@ -94,7 +93,7 @@ module GBud
       @templates.each do |template, filename|
         directory = map_template template
         file = File.new "#{directory}#{filename}", 'w+'
-        file.puts(render template)
+        file.puts(render(template))
         file.close
         make_executable if template == :'executable.rb'
       end
@@ -102,32 +101,32 @@ module GBud
 
     ##
     # Maps each templated file to correct directory
-    def map_template template
+    def map_template(template)
       case template
-        when :'readme.md'
-          @paths[:project_dir]
-        when :'gemspec.rb'
-          @paths[:project_dir]
-        when :'gemfile.rb'
-          @paths[:project_dir]
-        when :'guardfile.rb'
-          @paths[:project_dir]
-        when :'rakefile.rb'
-          @paths[:project_dir]
-        when :'main.rb'
-          @paths[:project_lib_dir]
-        when :'hello.rb'
-          @paths[:project_lib_project_dir]
-        when :'executable.rb'
-          @paths[:project_bin_dir]
-        when :'test_hello.rb'
-          @paths[:project_test_dir]
+      when :'readme.md'
+        @paths[:project_dir]
+      when :'gemspec.rb'
+        @paths[:project_dir]
+      when :'gemfile.rb'
+        @paths[:project_dir]
+      when :'rakefile.rb'
+        @paths[:project_dir]
+      when :'base.rb'
+        @paths[:project_lib_project_dir]
+      when :'hello.rb'
+        @paths[:project_lib_project_dir]
+      when :'executable.rb'
+        @paths[:project_bin_dir]
+      when :'test_hello.rb'
+        @paths[:project_test_dir]
+      when :'namespace.rb'
+        @paths[:project_lib_dir]
       end
     end
 
     ##
     # Renders the templates into files
-    def render template
+    def render(template)
       path = File.expand_path(File.join(File.dirname(__FILE__),
                                         '..',
                                         'templates',
@@ -138,7 +137,7 @@ module GBud
     ##
     # Flags the CLI file as executable
     def make_executable
-      File.chmod(0755, "#{@paths[:project_bin_dir]}#{@templates[:'executable.rb']}")
+      File.chmod(0o755, "#{@paths[:project_bin_dir]}#{@templates[:'executable.rb']}")
     end
 
     ##
@@ -147,21 +146,21 @@ module GBud
       @assets.each do |asset, filename|
         directory = map_asset asset
         FileUtils.cp(File.expand_path(File.join(File.dirname(__FILE__),
-                                        '..',
-                                        'assets',
-                                        "#{filename}")),
-                                      "#{directory}#{filename}")
+                                                '..',
+                                                'assets',
+                                                filename.to_s)),
+                     "#{directory}#{filename}")
       end
     end
 
     ##
     # Maps each asset file to correct directory
-    def map_asset asset
+    def map_asset(asset)
       case asset
-        when :gitignore
-          @paths[:project_dir]
-        when :license
-          @paths[:project_dir]
+      when :gitignore
+        @paths[:project_dir]
+      when :license
+        @paths[:project_dir]
       end
     end
   end
