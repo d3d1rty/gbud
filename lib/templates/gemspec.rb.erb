@@ -34,9 +34,9 @@ Gem::Specification.new do |s|
 HEREDOC
   s.license       = '<%= @metadata[:license] %>'
   s.files         = Dir['lib/**/*']
-<%- if @cli == true -%>
+<%- if @cli == true %>
   s.executables   = ['<%= @metadata[:name] %>']
-<%- end -%>
+<%- end %>
   s.test_files    = Dir['test/**/*']
   s.require_path  = ['lib']
 end
