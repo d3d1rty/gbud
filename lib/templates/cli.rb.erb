@@ -39,5 +39,6 @@ end
 optparse.parse!
 
 if options[:greet]
+  # Displays the greeting which serves as a functional test
   puts <%= @metadata[:name].split(/-|_/).each{ |s| s.capitalize! }.join %>::Hello.greeting(options[:greet])
 end

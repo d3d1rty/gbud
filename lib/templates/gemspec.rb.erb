@@ -25,18 +25,18 @@ Gem::Specification.new do |s|
   s.name          = '<%= @metadata[:name] %>'
   s.version       = '<%= @metadata[:version] %>'
   s.platform      = Gem::Platform::RUBY
-  s.authors       = <%= @metadata[:authors].to_s.gsub('"','') %>
+  s.authors       = <%= @metadata[:authors].to_s.tr('"', "'") %>
   s.email         = '<%= @metadata[:email] %>'
   s.homepage      = '<%= @metadata[:url] %>'
   s.summary       = '<%= @metadata[:summary] %>'
   s.description   = <<~HEREDOC
-  <%= @metadata[:description] %>
-HEREDOC
+    <%= @metadata[:description] %>
+  HEREDOC
   s.license       = '<%= @metadata[:license] %>'
   s.files         = Dir['lib/**/*']
-<%- if @cli == true %>
+<% if @cli == true %>
   s.executables   = ['<%= @metadata[:name] %>']
-<%- end %>
+<% end %>
   s.test_files    = Dir['test/**/*']
   s.require_path  = ['lib']
 end
