@@ -1,4 +1,5 @@
 require 'optparse'
+require 'English'
 
 trap('INT') do
   puts "\nTerminating..."
@@ -36,9 +37,15 @@ GNU General Public License for more details.
   end
 end
 
-optparse.parse!
+begin
+  optparse.parse!
+rescue OptionParser::InvalidOption, OptionParser::MissingArgument
+  puts $ERROR_INFO.to_s
+  puts 'Use -h or --help for options.'
+  exit 1
+end
 
 if options[:greet]
   # Displays the greeting which serves as a functional test
-  puts <%= @metadata[:name].split(/-|_/).each{ |s| s.capitalize! }.join %>::Hello.greeting(options[:greet])
+  puts <%= camel_case(@metadata[:name]) %>::Hello.greeting(options[:greet])
 end

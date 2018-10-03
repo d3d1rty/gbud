@@ -1,33 +1,18 @@
 #!/usr/bin/env ruby'
 # frozen_string_literal: true
 
-# Copyright <%= Date.today.year %> <%= @metadata[:authors].join(', ') %>
-#
-# This file is part of <%= @metadata[:name] %>.
-#
-# <%= @metadata[:name] %> is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-#
-# <%= @metadata[:name] %> is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with <%= @metadata[:name] %>.  If not, see <http://www.gnu.org/licenses/>.
+<%= render 'copyright_snippet.rb' %>
 
 ##
 # = /bin/<%= @metadata[:name] %>
-# Author::    <%= @metadata[:authors].join(', ') %>
-# Copyright:: Copyright <%= Date.today.year %> <%= @metadata[:authors].join(', ') %>
+# Author::    <%= listify(@metadata[:authors]) %>
+# Copyright:: Copyright <%= Date.today.year %> <%= listify(@metadata[:authors]) %>
 # License::   GNU Public License 3
 #
 # Project executable file.
 begin
-  require '<%= @metadata[:name].to_s.tr('-', '_') %>'
+  require '<%= snake_case(@metadata[:name])%>'
 rescue LoadError
   require 'rubygems'
-  require '<%= @metadata[:name].to_s.tr('-', '_') %>'
+  require '<%= snake_case(@metadata[:name])%>'
 end

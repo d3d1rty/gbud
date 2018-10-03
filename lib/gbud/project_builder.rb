@@ -163,5 +163,23 @@ module GBud
         @paths[:project_dir]
       end
     end
+
+    ##
+    # Returns the string in camel case.
+    def camel_case(str)
+      str.split(/-|_/).each(&:capitalize!).join
+    end
+
+    ##
+    # Returns the string in snake case.
+    def snake_case(str)
+      str.to_s.tr('-', '_')
+    end
+
+    ##
+    # Returns an enumberable as string separated by commas
+    def listify(arr)
+      arr.join(', ')
+    end
   end
 end
