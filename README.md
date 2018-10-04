@@ -9,7 +9,6 @@
     * Installation
     * Usage
 * Contributing
-    * Code of Conduct
     * Code Style
     * Documentation
     * Testing
@@ -58,7 +57,6 @@ Based off your input, gbud will generate
   * test script
   * gemspec
   * Gemfile
-  * Guardfile
   * Rakefile
   * README
   * LICENSE
@@ -70,20 +68,6 @@ Get the dependencies with `bundle install`
 Execute `rake test` to verify everything is good to go
 
 ## Contributing
-### Code of Conduct
-All contributions are welcome, but are merged at the discretion of the core
-contributor(s). Contributions to the project will be
-judged on their merits without respect to a contributor's publicly or
-privately held beliefs, opinions, ideology, nationality, ethnicity, or
-demographic. Most communications within the project should be limited to
-project planning, development, bugfixing, or other relevant topics; for
-off-topic discussions, contributors are expected to use good judgement
-and to avoid intentionally abusive behavior. Conflict should be resolved
-at the lowest level possible with minimal disruption to the project. Core
-contributor(s) reserve the right to request that a contributor alter their
-behavior, however, nothing in this code of conduct should be construed in
-such a manner that it infringes upon any contributor's freedom of expression.
-
 ### Code Style
 To keep a consistent code style, it is recommended to use
 [rubocop](https://github.com/bbatsov/rubocop). If you use `vim` and
@@ -140,6 +124,18 @@ can be run manually `bundle exec rake test` or automatically using guard `bundle
 * Increase test coverage.
 
 ## Changelog
+### 2018-10-03
+* Updated to version `0.2.0`.
+* Upgraded Ruby version to `2.5.1`.
+* Fixed namespace file generation.
+* Various style fixes for compliance with Rubocop.
+* Made helper methods of ProjectBuilder to make code more DRY.
+* Refactored templates to take advantage of new helpers and partials.
+* Added error handling for optparse.
+* Updated gem dependencies.
+* Removed guard dependency.
+* ...and more.
+
 ### 2017-12-23
 * Upgraded to version `0.1.0`.
 * Upgraded Ruby version to `2.4.1`.

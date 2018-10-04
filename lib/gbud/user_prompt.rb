@@ -53,6 +53,7 @@ module GBud
       print 'Is this correct? (Y/N) => '
       confirm = gets.chomp.to_s.upcase
       return false unless confirm == 'Y'
+
       true
     end
   end

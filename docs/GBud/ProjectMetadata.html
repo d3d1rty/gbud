@@ -269,7 +269,7 @@ used by <a href="ProjectBuilder.html">GBud::ProjectBuilder</a> objects.</p>
 
           
           <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File lib/gbud/project_metadata.rb, line 47</span>
+            <pre><span class="ruby-comment"># File lib/gbud/project_metadata.rb, line 48</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>
   <span class="ruby-ivar">@version</span> = <span class="ruby-string">&#39;0.0.1&#39;</span>
   <span class="ruby-ivar">@license</span> = <span class="ruby-string">&#39;GPL-3.0&#39;</span>
@@ -311,7 +311,7 @@ used by <a href="ProjectBuilder.html">GBud::ProjectBuilder</a> objects.</p>
 
           
           <div class="method-source-code" id="authors-3D-source">
-            <pre><span class="ruby-comment"># File lib/gbud/project_metadata.rb, line 60</span>
+            <pre><span class="ruby-comment"># File lib/gbud/project_metadata.rb, line 61</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">authors=</span>(<span class="ruby-identifier">authors</span>)
   <span class="ruby-ivar">@authors</span> = <span class="ruby-identifier">authors</span>.<span class="ruby-identifier">split</span>(<span class="ruby-string">&#39;, &#39;</span>)
 <span class="ruby-keyword">end</span></pre>
@@ -344,7 +344,7 @@ used by <a href="ProjectBuilder.html">GBud::ProjectBuilder</a> objects.</p>
 
           
           <div class="method-source-code" id="email-3D-source">
-            <pre><span class="ruby-comment"># File lib/gbud/project_metadata.rb, line 66</span>
+            <pre><span class="ruby-comment"># File lib/gbud/project_metadata.rb, line 67</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">email=</span>(<span class="ruby-identifier">email</span>)
   <span class="ruby-ivar">@email</span> = <span class="ruby-identifier">email</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">validate_email</span>(<span class="ruby-identifier">email</span>).<span class="ruby-identifier">nil?</span>
 <span class="ruby-keyword">end</span></pre>
@@ -377,7 +377,7 @@ used by <a href="ProjectBuilder.html">GBud::ProjectBuilder</a> objects.</p>
 
           
           <div class="method-source-code" id="name-3D-source">
-            <pre><span class="ruby-comment"># File lib/gbud/project_metadata.rb, line 54</span>
+            <pre><span class="ruby-comment"># File lib/gbud/project_metadata.rb, line 55</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">name=</span>(<span class="ruby-identifier">name</span>)
   <span class="ruby-ivar">@name</span> = <span class="ruby-identifier">name</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">validate_name</span>(<span class="ruby-identifier">name</span>).<span class="ruby-identifier">nil?</span>
 <span class="ruby-keyword">end</span></pre>
@@ -410,7 +410,7 @@ used by <a href="ProjectBuilder.html">GBud::ProjectBuilder</a> objects.</p>
 
           
           <div class="method-source-code" id="to_hash-source">
-            <pre><span class="ruby-comment"># File lib/gbud/project_metadata.rb, line 78</span>
+            <pre><span class="ruby-comment"># File lib/gbud/project_metadata.rb, line 79</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">to_hash</span>
   {
     <span class="ruby-identifier">name</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@name</span>,
@@ -452,7 +452,7 @@ used by <a href="ProjectBuilder.html">GBud::ProjectBuilder</a> objects.</p>
 
           
           <div class="method-source-code" id="url-3D-source">
-            <pre><span class="ruby-comment"># File lib/gbud/project_metadata.rb, line 72</span>
+            <pre><span class="ruby-comment"># File lib/gbud/project_metadata.rb, line 73</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">url=</span>(<span class="ruby-identifier">url</span>)
   <span class="ruby-ivar">@url</span> = <span class="ruby-identifier">url</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">validate_url</span>(<span class="ruby-identifier">url</span>).<span class="ruby-identifier">nil?</span>
 <span class="ruby-keyword">end</span></pre>
@@ -485,7 +485,7 @@ used by <a href="ProjectBuilder.html">GBud::ProjectBuilder</a> objects.</p>
 
           
           <div class="method-source-code" id="validate_email-source">
-            <pre><span class="ruby-comment"># File lib/gbud/project_metadata.rb, line 99</span>
+            <pre><span class="ruby-comment"># File lib/gbud/project_metadata.rb, line 100</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">validate_email</span>(<span class="ruby-identifier">email</span>)
   <span class="ruby-regexp">/\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i</span> <span class="ruby-operator">=~</span> <span class="ruby-identifier">email</span>
 <span class="ruby-keyword">end</span></pre>
@@ -518,7 +518,7 @@ used by <a href="ProjectBuilder.html">GBud::ProjectBuilder</a> objects.</p>
 
           
           <div class="method-source-code" id="validate_name-source">
-            <pre><span class="ruby-comment"># File lib/gbud/project_metadata.rb, line 93</span>
+            <pre><span class="ruby-comment"># File lib/gbud/project_metadata.rb, line 94</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">validate_name</span>(<span class="ruby-identifier">name</span>)
   <span class="ruby-regexp">/\A[a-z][a-z0-9_\-]*\Z/i</span> <span class="ruby-operator">=~</span> <span class="ruby-identifier">name</span>
 <span class="ruby-keyword">end</span></pre>
@@ -551,7 +551,7 @@ used by <a href="ProjectBuilder.html">GBud::ProjectBuilder</a> objects.</p>
 
           
           <div class="method-source-code" id="validate_url-source">
-            <pre><span class="ruby-comment"># File lib/gbud/project_metadata.rb, line 105</span>
+            <pre><span class="ruby-comment"># File lib/gbud/project_metadata.rb, line 106</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">validate_url</span>(<span class="ruby-identifier">url</span>)
   <span class="ruby-regexp">%r{https?:\/\/[\S]+}</span> <span class="ruby-operator">=~</span> <span class="ruby-identifier">url</span>
 <span class="ruby-keyword">end</span></pre>
@@ -573,7 +573,7 @@ used by <a href="ProjectBuilder.html">GBud::ProjectBuilder</a> objects.</p>
 
 <footer id="validator-badges" role="contentinfo">
   <p><a href="http://validator.w3.org/check/referer">Validate</a>
-  <p>Generated by <a href="https://rdoc.github.io/rdoc">RDoc</a> 5.0.0.
+  <p>Generated by <a href="https://rdoc.github.io/rdoc">RDoc</a> 5.1.0.
   <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
 </footer>
 
