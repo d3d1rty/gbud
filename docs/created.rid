@@ -1,10 +1,10 @@
-Wed, 03 Oct 2018 22:38:26 -0500
-README.md	Wed, 03 Oct 2018 22:37:12 -0500
-./lib/gbud.rb	Tue, 02 Oct 2018 18:51:47 -0500
-./lib/gbud/base.rb	Tue, 02 Oct 2018 21:53:54 -0500
-./lib/gbud/messages.rb	Tue, 02 Oct 2018 19:24:26 -0500
-./lib/gbud/project_builder.rb	Wed, 03 Oct 2018 10:59:24 -0500
-./lib/gbud/project_metadata.rb	Mon, 01 Oct 2018 22:09:33 -0500
-./lib/gbud/user_prompt.rb	Wed, 03 Oct 2018 22:38:16 -0500
-./test/test_project_builder.rb	Mon, 01 Oct 2018 22:09:33 -0500
-./test/test_project_metadata.rb	Mon, 01 Oct 2018 22:09:33 -0500
+Sat, 03 Nov 2018 09:02:07 -0500
+README.md	Sat, 03 Nov 2018 09:00:37 -0500
+./lib/gbud.rb	Thu, 11 Oct 2018 00:08:04 -0500
+./lib/gbud/base.rb	Sat, 03 Nov 2018 08:57:56 -0500
+./lib/gbud/messages.rb	Thu, 11 Oct 2018 00:08:04 -0500
+./lib/gbud/project_builder.rb	Thu, 11 Oct 2018 00:08:04 -0500
+./lib/gbud/project_metadata.rb	Thu, 11 Oct 2018 00:08:04 -0500
+./lib/gbud/user_prompt.rb	Thu, 11 Oct 2018 00:08:04 -0500
+./test/test_project_builder.rb	Thu, 11 Oct 2018 00:08:04 -0500
+./test/test_project_metadata.rb	Thu, 11 Oct 2018 00:08:04 -0500
