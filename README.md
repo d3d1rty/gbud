@@ -124,6 +124,10 @@ can be run manually `bundle exec rake test` or automatically using guard `bundle
 * Increase test coverage.
 
 ## Changelog
+### 2018-11-03
+* Updated to version `0.2.1`.
+* Bugfix for missing file.
+
 ### 2018-10-03
 * Updated to version `0.2.0`.
 * Upgraded Ruby version to `2.5.1`.
