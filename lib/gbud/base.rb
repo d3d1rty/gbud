@@ -33,7 +33,6 @@ require 'gbud/user_prompt'
 require 'gbud/project_metadata'
 require 'gbud/project_builder'
 require 'gbud/messages'
-require 'gbud/helpers'
 
 trap('INT') do
   puts "\nTerminating..."
